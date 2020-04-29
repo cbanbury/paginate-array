@@ -40,6 +40,14 @@ describe('Paginate array', () => {
     expect(paginate.data.length).to.equal(15);
   });
 
+  it('should support custom field names', () => {
+    const labels = {currentPage: 'page'}
+    const paginate = paginateArray(collection, 1, 15, labels);
+    
+    expect(paginate.page).to.equal(1);
+    expect(paginate.currentPage).to.not.exist;
+  })
+
   it('should return the next 2 items', () => {
     const paginate = paginateArray(collection, 2, 2);
     expect(paginate.data[0].id).to.equal(2);
